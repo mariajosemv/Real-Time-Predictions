@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <metacharset="UTF-8">
+
+    <title> Modelo Regresion Paso 2</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+
+
+    <!-- Importar TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>
+    <!-- Importar tfjs-vis  Visualizacion-->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="cabecera">
+            <img id="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAAb1BMVEVHcEzh6O3h6O3h6O3h6O3h6O3h6O3M1t3h6O3dLkTOwcrSl6TbQ1fNzNPeRVnXbX3Roq3ZWGrgrrjh3OLX3+XR2+HgusPcOU7fi5nh0djVgpHgoq7g5+zdOk/fdIPeaHnQ2eDYY3TeXW7QrLfN196Tx1eoAAAAB3RSTlMAYO8QIM+/iPzB7wAAAhBJREFUeF7N2NluwjAUBFBCIV6yb+w7/f9vrEzs+CaXWnYuD8wbVXQyUuuh8uJbE8V8ZuIIMKs1J2S9GpwlJ2VppPl9mqbv1DuRAk5tx3QUwHScn8tUiLxWUvSCYuXcGAuFSvGKkuIXpMiWhUNpD+UKVs6Pgrpw6CB0RhALhrKtgRoNLeZAoFDKKRAolJAgUIiRIGkL0aDCFiJBe2HypEEX41QMQoGBhTZKmQ9djfPgJGhjC9Ggh3Gumpl5RGwhyVRmQ0OhgpGgpy1Eg1JbiAQlxtlKAgQLHRgBgoUyEgQLkaCDLUSCsi0q5IbqVIi0RBAcWC+o1is6geDiv4WmaXLd/8jH2Rkn5yBjCD+Ppf0Z/dwJNfp5JF1QIQzhQljCA8udeyTFKMmwBgUYWObxWyvERNKQtIW8ICmmOfbQ3RbygirxToJ7tvGA9PNYAi+4cxeEC1UJlODAekElGGQoJZUdWC8IDrKScKQXlIBCSNKFfKBssn9Y2koPCMzNOUMVzQs8IDA3OzT2ZmCdEJ6bhg85QmjH3wRB+8l4YOnceEB4brC0404IFao5ktALHHtU/Xu6jVSaz84Zwacbfz15QPC0BnxhYgieVhIETysJAqeVBoHTSoPsYSJCtlAw1I2gvHfSLBxqByjmwz8yJQuGbqfhAiHiSsr1324Q9Nu1yuGRuWQhZv3hax/6RdSnrsa+NH++RJUePREKqAAAAABJRU5ErkJggg==" />
+            Linear regression using Neural Networks 
+            <span id="tagline">  </span>
+        </div>
+        <div id="post">
+        
+
+    <h1>Real time predictions</h1>
+    <!-- 1. <a href="index.html">Proceso de datos y creación de modelo</a><br> -->
+    1. <a href="index1.html">Train the model! </a><br>
+    2. <a href="index2.html">Get the predictions!</a><br>
+
+    <!--<p> <input type="button"value="Cargar Modelo"onclick="cargarModelo();" /><br></p>
+    <p> <input type="button"value="Guardar Modelo"onclick="guardarModelo();" /><br> </p>
+    <p> <input type="button"value="Curva de Inferencia"onclick="verCurvaInferencia();" /><br> </p>
+
+    <p>JSON File <input type="file"id="upload-json" /><br></p>
+
+    <p>Binary File <input type="file"id="upload-weights" /><br> </p> -->
+    <p> <input type="button"value="Stop training!"onclick="stopTraining=true;"> </p>
+
+    <!-- Importar el archivo principal -->
+    <script src="script2.js"></script>
+    <div id="footer" >
+        <small>Made with &#10084;&#65039; by María José Medina as a part of the TensorFlow.js Platzi course </small>
+    </div>
+
+    </div>
+</div>
+
+</body>
+</html>
