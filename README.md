@@ -1,6 +1,4 @@
 # Real time predictions 📈
-Project of the course TensorFlow.js from Platzi *(is still under construction 🛠️)*
-
-However, this is how is going: 
+Project of the course TensorFlow.js from Platzi 
 
   🚀   [Demo](https://mariajosemv.github.io/real-time-predictions/index.html)
