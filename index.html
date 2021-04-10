@@ -37,24 +37,38 @@
         How does it works:
         <br>
         <br>
-        When you click on Train the model, the training loop will start <br>
+        1. Open the visor to see the data 
+        <br>
+        <input type="button"value="Open visor"onclick="showData();"> <br>
+
+        2. Train the model
+        <br>
+        <input type="button"value="Train"onclick="trainModel();"> <br>
+
+        3. Stop the training 
+        <br>
+        <input type="button"value="Stop"onclick="stopTraining=true"> <br>
+
+        4. Show the predictions
+        <br>
+        <input type="button"value="Show"onclick="verCurvaInferencia();" /><br>
+
+
+        <!--When you click on Train the model, the training loop will start <br>
         and on the right side you will see how the learning process is evolving,<br>
         if you feel satisfied with the loss and mse values, then Stop the training <br>
-        go to the Visor tab and Show the predictions!
+        go to the Visor tab and Show the predictions!-->
 
     </p>
     
-    <input type="button"value="Train the model"onclick="location.href='index2.html'"> <br>
-    <br>
-    <input type="button"value="Stop training!"onclick="alertTrain();"> <br>
-    <br>
-    <input type="button"value="Show the predictions"onclick="alertTrain();" /><br>
+    
+    
     
     <br> Did you like the results? <br> Then Save the model so you can use it later. <br>
     <br>
     <input type="button"value="Save model"onclick="guardarModelo();" /><br>
     <br> 
-    Or if you want, you can also evaluate your own model! 
+    Or if you want, you can also evaluate your own model
     <br>
     <br>
     JSON File <input type="file"id="upload-json" /><br>
