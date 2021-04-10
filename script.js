@@ -15,7 +15,7 @@
 var stopTraining;
 
 async function getData() {
-    const datosCasasR = await fetch('https://static.platzi.com/media/public/uploads/datos-entrenamiento_15cd99ce-3561-494e-8f56-9492d4e86438.json');
+    const datosCasasR = await fetch('https://raw.githubusercontent.com/mariajosemv/Real-Time-Predictions/master/datos.json');
     const datosCasas = await datosCasasR.json();
     const datosLimpios = datosCasas.map(casa => ({
       precio: casa.Precio,
@@ -26,7 +26,81 @@ async function getData() {
     return datosLimpios;
   }
 
+  function visualizarDatos(data){
+
+    const visorInstance = tfvis.visor();
+    if (!visorInstance.isOpen()) {
+    visorInstance.toggle();
+}
+
+    const valores = data.map(d => ({
+      x: d.cuartos,
+      y: d.precio,
+    }));
+
+    tfvis.render.scatterplot(
+      {name: 'Room vs Price'},
+      {values: valores},
+      {
+        xLabel: 'Rooms',
+        yLabel: 'Price',
+        height: 300,
+        
+      }
+    );
+  }
+
   //mostrar curva de inferencia()
+
+
+  
+
+function crearModelo(){
+  const modelo = tf.sequential();
+
+  // agregar capa oculta que va a recibir 1 dato
+  modelo.add(tf.layers.dense({ inputShape: [1], units: 1, useBias: true }));
+
+  // agregar una capa de salida que va a tener 1 sola unidad
+  modelo.add(tf.layers.dense({ units: 1, useBias: true }));
+
+  return modelo;
+}
+
+const optimizador = tf.train.adam()
+const funcion_perdida = tf.losses.meanSquaredError;
+const metricas = ['mse'];
+
+async function entrenarModelo(model, inputs, labels) {
+  // Prepare the model for training.
+  model.compile({
+    optimizer: optimizador,
+    loss: funcion_perdida,
+    metrics: metricas,
+  });
+
+  const surface = { name: 'show.history live', tab: 'Training' };
+  const tamanioBatch = 28;
+  const epochs = 50;
+  const history = [];
+
+  return await model.fit(inputs, labels, {
+    tamanioBatch,
+    epochs,
+    shuffle: true,
+    callbacks: {
+      onEpochEnd: (epoch, log) => {
+        history.push(log);
+        tfvis.show.history(surface, history,  ['loss', 'mse']);
+
+        if(stopTraining){
+          modelo.stopTraining = true;
+        }
+      }
+    }
+  });
+}
+
 async function verCurvaInferencia(){
   var data = await getData();
   var tensorData = await convertirDatosATensores(data);
@@ -88,75 +162,6 @@ async function cargarModelo(){
   console.log("Modelo Cargado");
 }
 
-  function visualizarDatos(data){
-
-    const visorInstance = tfvis.visor();
-    if (!visorInstance.isOpen()) {
-    visorInstance.toggle();
-}
-
-    const valores = data.map(d => ({
-      x: d.cuartos,
-      y: d.precio,
-    }));
-
-    tfvis.render.scatterplot(
-      {name: 'Room vs Price'},
-      {values: valores},
-      {
-        xLabel: 'Rooms',
-        yLabel: 'Price',
-        height: 300,
-        
-      }
-    );
-  }
-
-function crearModelo(){
-  const modelo = tf.sequential();
-
-  // agregar capa oculta que va a recibir 1 dato
-  modelo.add(tf.layers.dense({ inputShape: [1], units: 1, useBias: true }));
-
-  // agregar una capa de salida que va a tener 1 sola unidad
-  modelo.add(tf.layers.dense({ units: 1, useBias: true }));
-
-  return modelo;
-}
-
-const optimizador = tf.train.adam()
-const funcion_perdida = tf.losses.meanSquaredError;
-const metricas = ['mse'];
-
-async function entrenarModelo(model, inputs, labels) {
-  // Prepare the model for training.
-  model.compile({
-    optimizer: optimizador,
-    loss: funcion_perdida,
-    metrics: metricas,
-  });
-
-  const surface = { name: 'show.history live', tab: 'Training' };
-  const tamanioBatch = 28;
-  const epochs = 50;
-  const history = [];
-
-  return await model.fit(inputs, labels, {
-    tamanioBatch,
-    epochs,
-    shuffle: true,
-    callbacks: {
-      onEpochEnd: (epoch, log) => {
-        history.push(log);
-        tfvis.show.history(surface, history,  ['loss', 'mse']);
-
-        if(stopTraining){
-          modelo.stopTraining = true;
-        }
-      }
-    }
-  });
-}
 
 async function guardarModelo(){
     const saveResult = await modelo.save('downloads://modelo-regresion');
@@ -197,6 +202,8 @@ function convertirDatosATensores(data){
 }
 
 
+
+// Workflow s
 
 async function showData() {
     const data = await getData();
