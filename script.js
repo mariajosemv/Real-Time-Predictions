@@ -1,18 +1,9 @@
-/*
-
-{
-  "IngresoPromedioZona": 79545.45857,
-    "EdadPromedioZona": 5.682861322,
-    "NumeroDeCuartosPromedio": 7.009188143,
-    "NumeroRecamarasPromedio": 4.09,
-    "PoblacionZona": 23086.8005,
-    "Precio": 1059033.558,
-    "Direccion": "No disponible"
-}
-
-*/
-
 var stopTraining;
+const optimizador = tf.train.adam()
+const funcion_perdida = tf.losses.meanSquaredError;
+const metricas = ['mse'];
+const metrics = ['loss', 'val_loss', 'mse', 'val_mse']
+
 
 async function getData() {
     const datosCasasR = await fetch('https://raw.githubusercontent.com/mariajosemv/Real-Time-Predictions/master/datos.json');
@@ -50,10 +41,38 @@ async function getData() {
     );
   }
 
-  //mostrar curva de inferencia()
-
-
+function convertirDatosATensores(data){
+  return tf.tidy(() => {
+    tf.util.shuffle(data);
   
+    const entradas = data.map(d => d.cuartos)
+    const etiquetas = data.map(d => d.precio);
+  
+    const tensorEntradas = tf.tensor2d(entradas, [entradas.length, 1]);
+    const tensorEtiquetas = tf.tensor2d(etiquetas, [etiquetas.length, 1]);
+  
+  
+    const entradasMax = tensorEntradas.max();
+    const entradasMin = tensorEntradas.min();
+    const etiquetasMax = tensorEtiquetas.max();
+    const etiquetasMin = tensorEtiquetas.min();
+  
+    // (dato -min) / (max-min)
+    const entradasNormalizadas = tensorEntradas.sub(entradasMin).div(entradasMax.sub(entradasMin));
+    const etiquetasNormalizadas = tensorEtiquetas.sub(etiquetasMin).div(etiquetasMax.sub(etiquetasMin));
+  
+      return {
+        entradas: entradasNormalizadas,
+        etiquetas: etiquetasNormalizadas,
+        // Return the min/max bounds so we can use them later.
+        entradasMax,
+        entradasMin,
+        etiquetasMax,
+        etiquetasMin,
+      }
+  
+    });
+  }
 
 function crearModelo(){
   const modelo = tf.sequential();
@@ -66,10 +85,6 @@ function crearModelo(){
 
   return modelo;
 }
-
-const optimizador = tf.train.adam()
-const funcion_perdida = tf.losses.meanSquaredError;
-const metricas = ['mse'];
 
 async function entrenarModelo(model, inputs, labels) {
   // Prepare the model for training.
@@ -84,14 +99,24 @@ async function entrenarModelo(model, inputs, labels) {
   const epochs = 50;
   const history = [];
 
-  return await model.fit(inputs, labels, {
+  const trainDataSize = 3500;
+  const testDataSize = 1500;
+
+  const [xTrain, xTest] = tf.split(inputs, [trainDataSize, testDataSize]);
+  const [yTrain, yTest] = tf.split(labels, [trainDataSize, testDataSize]);
+  
+  //const fitCallbacks = tfvis.show.fitCallbacks(surface, metrics);
+
+  return await model.fit(xTrain, yTrain, {
     tamanioBatch,
     epochs,
+    validationData: [xTest, yTest],
     shuffle: true,
     callbacks: {
+      
       onEpochEnd: (epoch, log) => {
         history.push(log);
-        tfvis.show.history(surface, history,  ['loss', 'mse']);
+        tfvis.show.history(surface, history,  ['loss', 'mse', 'val_loss', 'val_mse']);
 
         if(stopTraining){
           modelo.stopTraining = true;
@@ -135,10 +160,6 @@ async function verCurvaInferencia(){
   }));
 
 
-  const container = {
-    tab: 'Prediction'
-  };
-
   tfvis.render.scatterplot(
     { name: 'Prediction vs Original values', 
       tab:  'Predictions'},
@@ -162,48 +183,13 @@ async function cargarModelo(){
   console.log("Modelo Cargado");
 }
 
-
 async function guardarModelo(){
     const saveResult = await modelo.save('downloads://modelo-regresion');
 
 }
 
-function convertirDatosATensores(data){
-  return tf.tidy(() => {
-    tf.util.shuffle(data);
 
-    const entradas = data.map(d => d.cuartos)
-    const etiquetas = data.map(d => d.precio);
-
-    const tensorEntradas = tf.tensor2d(entradas, [entradas.length, 1]);
-    const tensorEtiquetas = tf.tensor2d(etiquetas, [etiquetas.length, 1]);
-
-
-    const entradasMax = tensorEntradas.max();
-    const entradasMin = tensorEntradas.min();
-    const etiquetasMax = tensorEtiquetas.max();
-    const etiquetasMin = tensorEtiquetas.min();
-
-    // (dato -min) / (max-min)
-    const entradasNormalizadas = tensorEntradas.sub(entradasMin).div(entradasMax.sub(entradasMin));
-    const etiquetasNormalizadas = tensorEtiquetas.sub(etiquetasMin).div(etiquetasMax.sub(etiquetasMin));
-
-      return {
-        entradas: entradasNormalizadas,
-        etiquetas: etiquetasNormalizadas,
-        // Return the min/max bounds so we can use them later.
-        entradasMax,
-        entradasMin,
-        etiquetasMax,
-        etiquetasMin,
-      }
-
-  });
-}
-
-
-
-// Workflow s
+// Workflow
 
 async function showData() {
     const data = await getData();
@@ -220,5 +206,3 @@ async function trainModel(){
     await entrenarModelo(modelo, entradas, etiquetas);
 
 }
-
-
