@@ -87,6 +87,7 @@ function crearModelo(){
 }
 
 async function entrenarModelo(model, inputs, labels) {
+
   // Prepare the model for training.
   model.compile({
     optimizer: optimizador,
@@ -94,7 +95,7 @@ async function entrenarModelo(model, inputs, labels) {
     metrics: metricas,
   });
 
-  const surface = { name: 'show.history live', tab: 'Training' };
+  const surface = { name: 'Training and Evaluation', tab: 'Training' };
   const tamanioBatch = 28;
   const epochs = 50;
   const history = [];
@@ -198,11 +199,18 @@ async function showData() {
 }
 
 async function trainModel(){
+
     const data = await getData();
     modelo = crearModelo();
     const tensorData = convertirDatosATensores(data);
     const {entradas, etiquetas} = tensorData;
 
     await entrenarModelo(modelo, entradas, etiquetas);
+
+}
+
+function disableButton(btn){
+
+  document.getElementById(btn.id).disabled = true;
 
 }

@@ -43,15 +43,15 @@
 
         2. Train the model
         <br>
-        <input type="button"value="Train"onclick="trainModel();"> <br>
+        <input type="button" id="train" value="Train"onclick="trainModel();disableButton(this)"> <br>
 
         3. Stop the training 
         <br>
-        <input type="button"value="Stop"onclick="stopTraining=true"> <br>
+        <input type="button" id="stop" value="Stop"onclick="stopTraining=true;disableButton(this)"> <br>
 
         4. Show the predictions
         <br>
-        <input type="button"value="Show"onclick="verCurvaInferencia();" /><br>
+        <input type="button" id="show" value="Show"onclick="verCurvaInferencia();disableButton(this)" /><br>
 
 
         <!--When you click on Train the model, the training loop will start <br>
