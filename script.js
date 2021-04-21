@@ -209,8 +209,24 @@ async function trainModel(){
 
 }
 
+// Utils
+
 function disableButton(btn){
 
   document.getElementById(btn.id).disabled = true;
 
+}
+
+function restart(){
+  sessionStorage.setItem("reloading", "true");
+  location.reload();
+
+}
+
+window.onload = function() { 
+  var reloading = sessionStorage.getItem("reloading");
+  if (reloading) {
+      sessionStorage.removeItem("reloading");
+      showData();
+  }
 }
