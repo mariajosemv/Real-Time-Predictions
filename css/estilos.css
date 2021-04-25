@@ -54,6 +54,19 @@ body {
   margin-bottom: 1rem;
 }
 
+.input-container .btn-action {
+  padding: 0.5rem 1rem;
+  background-color: #08a4bd;
+  border-radius: 10px;
+  color: #f4f4f9;
+  border: none;
+  width: 150px;
+}
+
+.input-container .btn-action:hover {
+  background-color: #07899d;
+}
+
 .save-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -93,27 +106,30 @@ body {
   border-radius: 10px;
 }
 
-.btn, .input-container .btn-action, .btn-restart, .btn-save, .btn-upload {
+.btn-restart {
   padding: 0.5rem 1rem;
   background-color: #08a4bd;
   border-radius: 10px;
   color: #f4f4f9;
   border: none;
   width: 150px;
-}
-
-.btn:hover, .input-container .btn-action:hover, .btn-restart:hover, .btn-save:hover, .btn-upload:hover {
-  background-color: #07899d;
-}
-
-.btn-restart {
   margin-top: 1rem;
   margin-left: 15%;
   font-weight: bold;
   font-size: 1.1rem;
 }
 
+.btn-restart:hover {
+  background-color: #07899d;
+}
+
 .btn-save {
+  padding: 0.5rem 1rem;
+  background-color: #08a4bd;
+  border-radius: 10px;
+  color: #f4f4f9;
+  border: none;
+  width: 150px;
   margin-top: 1rem;
   width: 20%;
   font-weight: bold;
@@ -124,11 +140,25 @@ body {
   background-color: #07899d;
 }
 
+.btn-save:hover {
+  background-color: #07899d;
+}
+
 .btn-upload {
+  padding: 0.5rem 1rem;
+  background-color: #08a4bd;
+  border-radius: 10px;
+  color: #f4f4f9;
+  border: none;
+  width: 150px;
   width: 20%;
   margin-top: 1rem;
   font-weight: bold;
   font-size: 1.1rem;
+}
+
+.btn-upload:hover {
+  background-color: #07899d;
 }
 
 footer {

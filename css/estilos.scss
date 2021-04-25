@@ -14,6 +14,20 @@ $light: #f4f4f9;
 $blue: #08a4bd;
 $blue-dark: #07899d;
 
+// Mixins
+@mixin btn-model {
+    padding: 0.5rem 1rem;
+    background-color: $blue;
+    border-radius: 10px;
+    color: $light;
+    border: none;
+    width: 150px;
+
+    &:hover {
+        background-color: $blue-dark;
+    }
+}
+
 // Resets
 * {
     margin: 0;
@@ -60,7 +74,7 @@ body {
     margin-bottom: 1rem;
 
     .btn-action {
-        @extend .btn;
+        @include btn-model;
     }
 }
 
@@ -95,31 +109,17 @@ body {
     border-radius: 10px;
 }
 
-// MODEL BUTTON
-.btn {
-    padding: 0.5rem 1rem;
-    background-color: $blue;
-    border-radius: 10px;
-    color: $light;
-    border: none;
-    width: 150px;
-
-    &:hover {
-        background-color: $blue-dark;
-    }
-}
-
 .btn-restart {
+    @include btn-model;
     margin-top: 1rem;
     margin-left: 15%;
-    @extend .btn;
     font-weight: bold;
     font-size: 1.1rem;
 }
 
 .btn-save {
+    @include btn-model;
     margin-top: 1rem;
-    @extend .btn;
     width: 20%;
     font-weight: bold;
     font-size: 1.1rem;
@@ -130,7 +130,7 @@ body {
 }
 
 .btn-upload {
-    @extend .btn;
+    @include btn-model;
     width: 20%;
     margin-top: 1rem;
     font-weight: bold;
