@@ -1,81 +1,184 @@
-body
-{
-    background: whitesmoke;
-    color: #333;
-    text-align: center;
-    font-family: Arial;
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Gentium+Book+Basic:ital,wght@0,400;0,700;1,400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Gentium Book Basic", Arial, sans-serif;
+  font-size: 22px;
 }
 
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-  }
-
-#cabecera
-{
-    background: palevioletred;
-    box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.5);
-    color: white;
-    font-weight: bold;
-    margin: 0;
-    padding: 0.5em;
+body {
+  background-color: #f4f4f9;
 }
 
-#cabecera #logo
-{
-    width: 20px;
-    vertical-align: middle;
+.container {
+  width: 60%;
+  margin: 0 auto;
 }
 
-#cabecera #tagline
-{
-    padding: 0 0 0 1em;
-    font-weight: normal;
-    font-size: 0.8em;
+.section-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 2rem;
 }
 
-#container
-{
-    width: 70%;
-    padding: 0;
-    text-align: left;
-    border: 1px solid #DDD;
-    margin: 0 auto;
+.section-container h2 {
+  margin-bottom: 0.5rem;
 }
 
-#container h1
-{
-    font-size: 20px;
-}
-#post
-{
-    background: white;
-    padding: 1em;
+.section-container h3,
+.section-container .input-loader {
+  margin-bottom: 1rem;
 }
 
-#cabecera
- {
-    background: palevioletred;
-    color: white;
-    margin: 0;
-    padding: 0.5em;
-
+.half-container {
+  width: 75%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-#footer
- {
-    background: #eeced3;
-    color: palevioletred;
-    margin: 0;
-    padding: 0.5em;
-    text-align: left;
-    
-    
-    
-
+.input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 1rem;
 }
+
+.input-container .btn-action {
+  padding: 0.5rem 1rem;
+  background-color: #08a4bd;
+  border-radius: 10px;
+  color: #f4f4f9;
+  border: none;
+  width: 150px;
+}
+
+.input-container .btn-action:hover {
+  background-color: #07899d;
+}
+
+.save-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.navbar {
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #db7093;
+}
+
+.navbar .logo {
+  width: 30px;
+  margin-right: 1rem;
+}
+
+.navbar h1 {
+  color: #f4f4f9;
+  font-size: 36px;
+}
+
+.important-note {
+  background-color: khaki;
+  width: 45%;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.btn-restart {
+  padding: 0.5rem 1rem;
+  background-color: #08a4bd;
+  border-radius: 10px;
+  color: #f4f4f9;
+  border: none;
+  width: 150px;
+  margin-top: 1rem;
+  margin-left: 15%;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.btn-restart:hover {
+  background-color: #07899d;
+}
+
+.btn-save {
+  padding: 0.5rem 1rem;
+  background-color: #08a4bd;
+  border-radius: 10px;
+  color: #f4f4f9;
+  border: none;
+  width: 150px;
+  margin-top: 1rem;
+  width: 20%;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.btn-save:hover {
+  background-color: #07899d;
+}
+
+.btn-save:hover {
+  background-color: #07899d;
+}
+
+.btn-upload {
+  padding: 0.5rem 1rem;
+  background-color: #08a4bd;
+  border-radius: 10px;
+  color: #f4f4f9;
+  border: none;
+  width: 150px;
+  width: 20%;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.btn-upload:hover {
+  background-color: #07899d;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #e79db6;
+}
+
+footer h4 {
+  color: #f4f4f9;
+}
+/*# sourceMappingURL=estilos.css.map */
