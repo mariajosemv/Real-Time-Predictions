@@ -1,0 +1,155 @@
+// Resources:
+//     Paleta de Colores: https://coolors.co/e79db6-435058-f4f4f9-447604-07899d
+
+// Gentium Book Basic from Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Gentium+Book+Basic:ital,wght@0,400;0,700;1,400&display=swap");
+
+// Colors
+$primary: #db7093;
+$primary-light: #e79db6;
+$dark: #435058;
+$green: #447604;
+
+$light: #f4f4f9;
+$blue: #08a4bd;
+$blue-dark: #07899d;
+
+// Mixins
+@mixin btn-model {
+    padding: 0.5rem 1rem;
+    background-color: $blue;
+    border-radius: 10px;
+    color: $light;
+    border: none;
+    width: 150px;
+
+    &:hover {
+        background-color: $blue-dark;
+    }
+}
+
+// Resets
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Gentium Book Basic", Arial, sans-serif;
+    font-size: 22px;
+}
+
+body {
+    background-color: $light;
+}
+
+// CONTAINERS
+.container {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.section-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+
+    h2 {
+        margin-bottom: 0.5rem;
+    }
+
+    h3,
+    .input-loader {
+        margin-bottom: 1rem;
+    }
+}
+
+.half-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    .btn-action {
+        @include btn-model;
+    }
+}
+
+.save-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+// NAVBAR
+.navbar {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: $primary;
+
+    .logo {
+        width: 30px;
+        margin-right: 1rem;
+    }
+
+    h1 {
+        color: $light;
+        font-size: 36px;
+    }
+}
+
+.important-note {
+    background-color: khaki;
+    width: 45%;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.btn-restart {
+    @include btn-model;
+    margin-top: 1rem;
+    margin-left: 15%;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.btn-save {
+    @include btn-model;
+    margin-top: 1rem;
+    width: 20%;
+    font-weight: bold;
+    font-size: 1.1rem;
+
+    &:hover {
+        background-color: $blue-dark;
+    }
+}
+
+.btn-upload {
+    @include btn-model;
+    width: 20%;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+// FOOTER
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary-light;
+
+    h4 {
+        color: $light;
+    }
+}
