@@ -30,6 +30,18 @@ body {
   margin: 0 auto;
 }
 
+.container-nav-footer {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0rem;
+  margin: 0 auto;
+}
+
 .section-container {
   width: 100%;
   padding: 1rem;
@@ -95,7 +107,7 @@ body {
 }
 
 .navbar {
-  background-color: #db7093;
+  background-color: #47597E;
 }
 
 .navbar .logo {
@@ -110,7 +122,7 @@ body {
 }
 
 .important-note {
-  background-color: khaki;
+  background-color: #e2decc;
   width: 45%;
   padding: 1rem 1.5rem;
   border-radius: 10px;
@@ -197,7 +209,7 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #e79db6;
+  background-color: #47597E;
 }
 
 footer h4 {
