@@ -13,14 +13,38 @@ body {
 }
 
 .container {
-  width: 60%;
+  width: 80%;
+  padding: 1.5rem 0;
+  margin: 0 auto;
+}
+
+.container-nav {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.container-nav-footer {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0rem;
   margin: 0 auto;
 }
 
 .section-container {
   width: 100%;
-  margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem;
 }
 
 .section-container h2 {
@@ -67,6 +91,10 @@ body {
   background-color: #07899d;
 }
 
+.input-container .btn-action:disabled {
+  background-color: #055561;
+}
+
 .save-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -79,18 +107,12 @@ body {
 }
 
 .navbar {
-  padding: 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #db7093;
+  background-color: #47597E;
 }
 
 .navbar .logo {
   width: 30px;
+  height: 30px;
   margin-right: 1rem;
 }
 
@@ -100,9 +122,9 @@ body {
 }
 
 .important-note {
-  background-color: khaki;
+  background-color: #e2decc;
   width: 45%;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   border-radius: 10px;
 }
 
@@ -123,6 +145,10 @@ body {
   background-color: #07899d;
 }
 
+.btn-restart:disabled {
+  background-color: #055561;
+}
+
 .btn-save {
   padding: 0.5rem 1rem;
   background-color: #08a4bd;
@@ -131,13 +157,17 @@ body {
   border: none;
   width: 150px;
   margin-top: 1rem;
-  width: 20%;
+  width: 25%;
   font-weight: bold;
   font-size: 1.1rem;
 }
 
 .btn-save:hover {
   background-color: #07899d;
+}
+
+.btn-save:disabled {
+  background-color: #055561;
 }
 
 .btn-save:hover {
@@ -151,7 +181,7 @@ body {
   color: #f4f4f9;
   border: none;
   width: 150px;
-  width: 20%;
+  width: 25%;
   margin-top: 1rem;
   font-weight: bold;
   font-size: 1.1rem;
@@ -159,6 +189,10 @@ body {
 
 .btn-upload:hover {
   background-color: #07899d;
+}
+
+.btn-upload:disabled {
+  background-color: #055561;
 }
 
 footer {
@@ -175,7 +209,7 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #e79db6;
+  background-color: #47597E;
 }
 
 footer h4 {

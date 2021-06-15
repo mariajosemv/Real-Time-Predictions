@@ -13,6 +13,7 @@ $green: #447604;
 $light: #f4f4f9;
 $blue: #08a4bd;
 $blue-dark: #07899d;
+$disabled-blue: #055561;
 
 // Mixins
 @mixin btn-model {
@@ -25,6 +26,10 @@ $blue-dark: #07899d;
 
     &:hover {
         background-color: $blue-dark;
+    }
+
+    &:disabled {
+        background-color: $disabled-blue;
     }
 }
 
@@ -43,14 +48,22 @@ body {
 
 // CONTAINERS
 .container {
-    width: 60%;
+    width: 80%;
+    padding: 1.5rem 0;
+    margin: 0 auto;
+}
+
+.container-nav {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
     margin: 0 auto;
 }
 
 .section-container {
     width: 100%;
-    margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 1rem;
 
     h2 {
         margin-bottom: 0.5rem;
@@ -86,13 +99,13 @@ body {
 
 // NAVBAR
 .navbar {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
+    // padding: 1rem 0 1rem 7rem;
+
     background-color: $primary;
 
     .logo {
         width: 30px;
+        height: 30px;
         margin-right: 1rem;
     }
 
@@ -105,7 +118,7 @@ body {
 .important-note {
     background-color: khaki;
     width: 45%;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-radius: 10px;
 }
 
@@ -120,7 +133,7 @@ body {
 .btn-save {
     @include btn-model;
     margin-top: 1rem;
-    width: 20%;
+    width: 25%;
     font-weight: bold;
     font-size: 1.1rem;
 
@@ -131,7 +144,7 @@ body {
 
 .btn-upload {
     @include btn-model;
-    width: 20%;
+    width: 25%;
     margin-top: 1rem;
     font-weight: bold;
     font-size: 1.1rem;
