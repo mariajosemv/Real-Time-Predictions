@@ -1,170 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Real time predictions</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real time predictions</title>
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="./css/estilos.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/estilos.css" />
 
-		<!-- Importar TensorFlow.js -->
-		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>
-		<!-- Importar tfjs-vis  Visualizacion-->
-		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
-	</head>
+    <!-- Importar TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>
+    <!-- Importar tfjs-vis  Visualizacion-->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+  </head>
 
-	<body>
-		<header>
-			<nav class="navbar">
-				<img
-					class="logo"
-					src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAAb1BMVEVHcEzh6O3h6O3h6O3h6O3h6O3h6O3M1t3h6O3dLkTOwcrSl6TbQ1fNzNPeRVnXbX3Roq3ZWGrgrrjh3OLX3+XR2+HgusPcOU7fi5nh0djVgpHgoq7g5+zdOk/fdIPeaHnQ2eDYY3TeXW7QrLfN196Tx1eoAAAAB3RSTlMAYO8QIM+/iPzB7wAAAhBJREFUeF7N2NluwjAUBFBCIV6yb+w7/f9vrEzs+CaXWnYuD8wbVXQyUuuh8uJbE8V8ZuIIMKs1J2S9GpwlJ2VppPl9mqbv1DuRAk5tx3QUwHScn8tUiLxWUvSCYuXcGAuFSvGKkuIXpMiWhUNpD+UKVs6Pgrpw6CB0RhALhrKtgRoNLeZAoFDKKRAolJAgUIiRIGkL0aDCFiJBe2HypEEX41QMQoGBhTZKmQ9djfPgJGhjC9Ggh3Gumpl5RGwhyVRmQ0OhgpGgpy1Eg1JbiAQlxtlKAgQLHRgBgoUyEgQLkaCDLUSCsi0q5IbqVIi0RBAcWC+o1is6geDiv4WmaXLd/8jH2Rkn5yBjCD+Ppf0Z/dwJNfp5JF1QIQzhQljCA8udeyTFKMmwBgUYWObxWyvERNKQtIW8ICmmOfbQ3RbygirxToJ7tvGA9PNYAi+4cxeEC1UJlODAekElGGQoJZUdWC8IDrKScKQXlIBCSNKFfKBssn9Y2koPCMzNOUMVzQs8IDA3OzT2ZmCdEJ6bhg85QmjH3wRB+8l4YOnceEB4brC0404IFao5ktALHHtU/Xu6jVSaz84Zwacbfz15QPC0BnxhYgieVhIETysJAqeVBoHTSoPsYSJCtlAw1I2gvHfSLBxqByjmwz8yJQuGbqfhAiHiSsr1324Q9Nu1yuGRuWQhZv3hax/6RdSnrsa+NH++RJUePREKqAAAAABJRU5ErkJggg=="
-				/>
-				<h1>Linear regression using Neural Networks</h1>
-			</nav>
-		</header>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="container-nav">
+          <img class="logo" src="./img/stats.png" />
+          <h1>Linear regression using Neural Networks</h1>
+        </div>
+      </nav>
+    </header>
 
-		<main class="container">
-			<section class="section-container">
-				<h2>Real time predictions</h2>
+    <main class="container">
+      <section class="section-container">
+        <h2>Real time predictions</h2>
 
-				<p>
-					This is a linear regression based on a neural network model.
-					<br />
-					For this demo I am using one hidden layer for predict the cost of a
-					<br />
-					house given a number of rooms.
-				</p>
-			</section>
+        <p>
+          This is a linear regression based on a neural network model.
+          <br />
+          For this demo I am using one hidden layer for predict the cost of a
+          <br />
+          house given a number of rooms.
+        </p>
+      </section>
 
-			<section class="section-container half-container">
-				<h2>How does it works:</h2>
+      <section class="section-container half-container">
+        <h2>How does it works:</h2>
 
-				<div class="input-container">
-					<label for="visor">1. Open the visor to see the data:</label>
-					<input
-						type="button"
-						class="btn-action"
-						value="Open visor"
-						name="visor"
-						onclick="showData();"
-					/>
-				</div>
+        <div class="input-container">
+          <label for="visor">1. Open the visor to see the data:</label>
+          <input
+            type="button"
+            class="btn-action"
+            value="Open visor"
+            name="visor"
+            onclick="showData();"
+          />
+        </div>
 
-				<div class="input-container">
-					<label for="train">2. Train the model:</label>
-					<input
-						type="button"
-						name="train"
-						class="btn-action"
-						id="train"
-						value="Train"
-						onclick="trainModel();disableButton(this)"
-					/>
-				</div>
+        <div class="input-container">
+          <label for="train">2. Train the model:</label>
+          <input
+            type="button"
+            name="train"
+            class="btn-action"
+            id="train"
+            value="Train"
+            onclick="trainModel();disableButton(this)"
+          />
+        </div>
 
-				<div class="input-container">
-					<label for="stop">3. Stop the training:</label>
-					<input
-						type="button"
-						name="stop"
-						class="btn-action"
-						id="stop"
-						value="Stop"
-						onclick="stopTraining=true;disableButton(this)"
-					/>
-				</div>
+        <div class="input-container">
+          <label for="stop">3. Stop the training:</label>
+          <input
+            type="button"
+            name="stop"
+            class="btn-action"
+            id="stop"
+            value="Stop"
+            onclick="stopTraining=true;disableButton(this)"
+          />
+        </div>
 
-				<div class="input-container">
-					<label for="show">4. Show the predictions:</label>
-					<input
-						type="button"
-						name="show"
-						class="btn-action"
-						id="show"
-						value="Show"
-						onclick="verCurvaInferencia();disableButton(this)"
-					/>
-				</div>
+        <div class="input-container">
+          <label for="show">4. Show the predictions:</label>
+          <input
+            type="button"
+            name="show"
+            class="btn-action"
+            id="show"
+            value="Show"
+            onclick="verCurvaInferencia();disableButton(this)"
+          />
+        </div>
 
-				<!--When you click on Train the model, the training loop will start <br>
+        <!--When you click on Train the model, the training loop will start <br>
         and on the right side you will see how the learning process is evolving,<br>
         if you feel satisfied with the loss and mse values, then Stop the training <br>
         go to the Visor tab and Show the predictions!-->
-			</section>
+      </section>
 
-			<section class="section-container">
-				<div class="important-note">
-					<h2>&#128204; Important</h2>
-					<p>
-						The model can improve its performance by increasing
-						<br />
-						the iteration number during the training stage.
-						<br />
-						So if you want, you can restart the training
-						<br />
-						and let the model train a little bit more.
-					</p>
-				</div>
+      <section class="section-container">
+        <div class="important-note">
+          <h2>&#128204; Important</h2>
+          <p>
+            The model can improve its performance by increasing
+            <br />
+            the iteration number during the training stage.
+            <br />
+            So if you want, you can restart the training
+            <br />
+            and let the model train a little bit more.
+          </p>
+        </div>
 
-				<input
-					class="btn-restart"
-					type="button"
-					value="Restart"
-					onclick="restart();"
-				/>
-			</section>
+        <input
+          class="btn-restart"
+          type="button"
+          value="Restart"
+          onclick="restart();"
+        />
+      </section>
 
-			<section class="section-container">
-				<h2>Did you like the results?</h2>
+      <section class="section-container">
+        <h2>Did you like the results?</h2>
 
-				<div class="save-container">
-					<label for="save">Then Save the model so you can use it later.</label>
-					<input
-						type="button"
-						name="save"
-						class="btn-save"
-						value="Save model"
-						onclick="guardarModelo();"
-					/>
-				</div>
+        <div class="save-container">
+          <label for="save">Then Save the model so you can use it later.</label>
+          <input
+            type="button"
+            name="save"
+            class="btn-save"
+            value="Save model"
+            onclick="guardarModelo();"
+          />
+        </div>
 
-				<h3>Or if you want, you can also evaluate your own model</h3>
+        <h3>Or if you want, you can also evaluate your own model</h3>
 
-				<div class="input-loader">
-					<label for="json">JSON File</label>
-					<input type="file" name="json" class="btn-loader" id="upload-json" />
-				</div>
+        <div class="input-loader">
+          <label for="json">JSON File</label>
+          <input type="file" name="json" class="btn-loader" id="upload-json" />
+        </div>
 
-				<div class="input-loader">
-					<label for="binary">Binary File</label>
-					<input
-						type="file"
-						name="binary"
-						class="btn-loader"
-						id="upload-weights"
-					/>
-				</div>
+        <div class="input-loader">
+          <label for="binary">Binary File</label>
+          <input
+            type="file"
+            name="binary"
+            class="btn-loader"
+            id="upload-weights"
+          />
+        </div>
 
-				<input
-					type="button"
-					class="btn-upload"
-					value="Upload model"
-					onclick="cargarModelo();"
-				/>
-			</section>
-		</main>
+        <input
+          type="button"
+          class="btn-upload"
+          value="Upload model"
+          onclick="cargarModelo();"
+        />
+      </section>
+    </main>
 
-		<footer>
-			<h4>
-				Made with &#10084;&#65039; by María José Medina as a part of the
-				TensorFlow.js Platzi course
-			</h4>
-		</footer>
+    <footer>
+      <h4>
+        Made with &#10084;&#65039; by María José Medina as a part of the
+        TensorFlow.js Platzi course
+      </h4>
+    </footer>
 
-		<!-- Script que hace que todo valga la pena xD -->
-		<script src="script.js"></script>
-	</body>
+    <!-- Script que hace que todo valga la pena xD -->
+    <script src="script.js"></script>
+  </body>
 </html>
